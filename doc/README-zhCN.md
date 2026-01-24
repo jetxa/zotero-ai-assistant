@@ -10,6 +10,8 @@ Zotero AI Assistant 是一个为 [Zotero 7](https://www.zotero.org/) 设计的�
 
 **插件需要使用大模型API，通过API与大模型进行交互，[点我了解如何获取API](API.md)**
 
+<img src="image/overview_zhCN.png" alt="插件界面" width="900">
+
 ## ✨ 功能特性
 
 ### 🤖 智能对话

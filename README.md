@@ -10,6 +10,8 @@ Zotero AI Assistant is an intelligent AI assistant plugin designed for [Zotero 7
 
 **The plugin requires the use of an API to interact with the AI model. You need to get an API key from a LLM provider like OpenAI, Grok, DeepSeek, etc.**
 
+<img src="doc/image/overview.png" alt="Overview" width="900">
+
 ## ✨ Features
 
 ### 🤖 Intelligent Chat
