@@ -110,9 +110,9 @@ npm run build
 
 | 配置项 | 说明 | 示例 |
 |--------|------|------|
-| **API URL** | AI 服务的 API 端点 | `https://api.openai.com/v1/chat/completions` |
+| **API URL** | AI 服务的 API 端点 | `https://api.siliconflow.cn/v1/chat/completions` |
 | **API Key** | API 密钥 | `sk-xxxx...` |
-| **Model** | 模型名称 | `gpt-5`, `deepseek-chat` |
+| **Model** | 模型名称 | `deepseek-ai/DeepSeek-V3.2`, `Pro/zai-org/GLM-4.7` |
 | **Translate Prompt** | 翻译提示词模板 | `请将以下文本翻译成中文：` |
 | **Explain Prompt** | 解释提示词模板 | `请解释以下文本：` |
 | **Full Text Limit** | 全文最大字符数 | `100000` |
@@ -161,7 +161,7 @@ Model: deepseek-chat
 
 ## 🛠️ 开发说明
 
-本插件基于 [zotero-plugin-template](https://github.com/windingwind/zotero-plugin-template) ，由[gemini-cli](https://github.com/google-gemini/gemini-cli)完成开发。
+本插件基于 [zotero-plugin-template](https://github.com/windingwind/zotero-plugin-template) ，全部由[gemini-cli](https://github.com/google-gemini/gemini-cli)完成开发。
 
 欢迎提交Issues 和 Pull Requests!
 
