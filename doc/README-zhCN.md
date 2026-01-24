@@ -8,6 +8,8 @@
 
 Zotero AI Assistant 是一个为 [Zotero 7](https://www.zotero.org/) 设计的智能 AI 助手插件，可以帮助您更高效地阅读和理解学术文献。
 
+**插件需要使用大模型API，通过API与大模型进行交互，[点我了解如何获取API](API.md)**
+
 ## ✨ 功能特性
 
 ### 🤖 智能对话
@@ -118,13 +120,19 @@ npm run build
 ### 常用 API 配置示例
 
 <details>
-<summary><b>OpenAI</b></summary>
-
+<summary><b>硅基流动</b></summary>
 ```
-API URL: https://api.openai.com/v1/chat/completions
-Model: gpt-5
+API URL: https://api.siliconflow.cn/v1/chat/completions
+Model: Pro/zai-org/GLM-4.7
 ```
+</details>
 
+<details>
+<summary><b>DeepSeek</b></summary>
+```
+API URL: https://api.deepseek.com/v1/chat/completions
+Model: deepseek-chat
+```
 </details>
 
 ## 🚀 使用方法
