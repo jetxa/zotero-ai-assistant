@@ -42,6 +42,40 @@ Zotero AI Assistant 是一个为 [Zotero 7](https://www.zotero.org/) 设计的�
 - **自定义提示词**：可自定义翻译和解释功能的提示词模板
 - **全文长度限制**：可设置发送给 AI 的全文最大字符数
 
+## 📸 功能示意
+
+### 设置界面
+
+在 Zotero 设置中配置 API 和提示词：
+
+<img src="image/settings_zhCN.png" alt="设置界面" width="500">
+
+### 选中文本问答
+
+在 PDF 阅读器中选中文本后，可以快速使用 AI 翻译或解释功能：
+
+<img src="image/select_text_zhCN.png" alt="选中文本功能" width="700">
+
+### 全文分析
+
+勾选 "Full Text" 选项后，插件会自动提取 PDF 全文内容作为上下文发送给 AI, **会消耗较多 token（可在设置中配置全文最大字符数）**：
+
+<img src="image/full_text_zhCN.png" alt="全文分析功能" width="700">
+
+### 历史会话选择
+
+下拉框选择不同的历史会话
+
+<img src="image/history.png" alt="会话历史" width="300">
+
+### 与AI会话本地保存为附件
+
+<img src="image/attachment.png" alt="附件" width="700">
+
+### AI会话内容可本地打开查看
+
+<img src="image/attachment_content.png" alt="历史会话内容" width="500">
+
 ## 📦 安装
 
 ### 从 Release 下载

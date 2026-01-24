@@ -1,4 +1,4 @@
-# Zotero AI Assistant
+  # Zotero AI Assistant
 
 [![zotero target version](https://img.shields.io/badge/Zotero-7-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
@@ -41,6 +41,40 @@ Zotero AI Assistant is an intelligent AI assistant plugin designed for [Zotero 7
   - Local models (Ollama, LM Studio, etc.)
 - **Custom Prompts**: Customize prompt templates for translation and explanation features
 - **Full-Text Length Limit**: Set the maximum character count sent to AI
+
+## 📸 Screenshots
+
+### Settings Interface
+
+Configure API and prompts in Zotero settings:
+
+<img src="doc/image/settings.png" alt="Settings Interface" width="500">
+
+### Selected Text Q&A
+
+Quickly translate or explain selected text in the PDF reader:
+
+<img src="doc/image/select_text.png" alt="Selected Text Q&A" width="700">
+
+### Full-Text Analysis
+
+Check the "Full Text" option to send the entire PDF content to AI for analysis:
+
+<img src="doc/image/full_text.png" alt="Full-Text Analysis" width="700">
+
+### Session History
+
+Switch between different historical sessions using the dropdown:
+
+<img src="doc/image/history.png" alt="Session History" width="300">
+
+### AI Chat Saved as Attachment
+
+Chat history is saved as a JSON file attachment, which can be opened and viewed locally:
+
+<img src="doc/image/attachment.png" alt="Attachment" width="700">
+
+<img src="doc/image/attachment_content.png" alt="Attachment Content" width="500">
 
 ## 📦 Installation
 
