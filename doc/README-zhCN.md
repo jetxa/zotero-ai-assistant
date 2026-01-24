@@ -90,7 +90,7 @@ Zotero AI Assistant 是一个为 [Zotero 7](https://www.zotero.org/) 设计的�
 4. 点击齿轮图标，选择 `Install Add-on From File...`
 5. 选择下载的 `.xpi` 文件进行安装
 
-### 从源码构建
+### 或从源码构建安装
 
 ```bash
 # 克隆仓库
@@ -117,24 +117,28 @@ npm run build
 | **Model** | 模型名称 | `deepseek-ai/DeepSeek-V3.2`, `Pro/zai-org/GLM-4.7` |
 | **Translate Prompt** | 翻译提示词模板 | `请将以下文本翻译成中文：` |
 | **Explain Prompt** | 解释提示词模板 | `请解释以下文本：` |
-| **Full Text Limit** | 全文最大字符数 | `100000` |
+| **Full Text Limit** | 全文最大字符数，避免文章过长时消耗过多token，可自行调节 | `100000` |
 
 ### 常用 API 配置示例
 
 <details>
 <summary><b>硅基流动</b></summary>
+
 ```
 API URL: https://api.siliconflow.cn/v1/chat/completions
 Model: Pro/zai-org/GLM-4.7
 ```
+
 </details>
 
 <details>
 <summary><b>DeepSeek</b></summary>
+
 ```
 API URL: https://api.deepseek.com/v1/chat/completions
 Model: deepseek-chat
 ```
+
 </details>
 
 ## 🚀 使用方法
