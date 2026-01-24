@@ -114,14 +114,14 @@ npm run build
 
 安装插件后，在 Zotero 中打开 `编辑` → `设置` → `AI 助手` 进行配置：
 
-| 配置项               | 说明                                                    | 示例                                               |
-| -------------------- | ------------------------------------------------------- | -------------------------------------------------- |
-| **API URL**          | AI 服务的 API 端点                                      | `https://api.siliconflow.cn/v1/chat/completions`   |
-| **API Key**          | API 密钥                                                | `sk-xxxx...`                                       |
-| **Model**            | 模型名称                                                | `deepseek-ai/DeepSeek-V3.2`, `Pro/zai-org/GLM-4.7` |
-| **Translate Prompt** | 翻译提示词模板                                          | `请将以下文本翻译成中文：`                         |
-| **Explain Prompt**   | 解释提示词模板                                          | `请解释以下文本：`                                 |
-| **Full Text Limit**  | 全文最大字符数，避免文章过长时消耗过多token，可自行调节 | `100000`                                           |
+| 配置项 | 说明 | 示例 |
+|--------|------|------|
+| **API URL** | AI 服务的 API 端点 | `https://api.siliconflow.cn/v1/chat/completions` |
+| **API Key** | API 密钥 | `sk-xxxx...` |
+| **Model** | 模型名称 | `deepseek-ai/DeepSeek-V3.2`, `Pro/zai-org/GLM-4.7` |
+| **Translate Prompt** | 翻译提示词模板 | `请将以下文本翻译成中文：` |
+| **Explain Prompt** | 解释提示词模板 | `请解释以下文本：` |
+| **Full Text Limit** | 全文最大字符数，避免文章过长时消耗过多token，可自行调节 | `100000` |
 
 ### 常用 API 配置示例
 
