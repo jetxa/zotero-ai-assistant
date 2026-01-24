@@ -1,4 +1,4 @@
-  # Zotero AI Assistant
+# Zotero AI Assistant
 
 [![zotero target version](https://img.shields.io/badge/Zotero-7-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
@@ -110,14 +110,14 @@ After building, find the `.xpi` file in the `.scaffold/build/` directory.
 
 After installation, open `Edit` → `Settings` → `AI Assistant` in Zotero to configure:
 
-| Setting | Description | Example |
-|---------|-------------|---------|
-| **API URL** | AI service API endpoint | `https://api.openai.com/v1/chat/completions` |
-| **API Key** | API key | `sk-xxxx...` |
-| **Model** | Model name | `gpt-5`, `deepseek-chat` |
-| **Translate Prompt** | Translation prompt template | `Please translate the following text into Chinese:` |
-| **Explain Prompt** | Explanation prompt template | `Please explain the following text:` |
-| **Full Text Limit** | Maximum characters for full text | `100000` |
+| Setting              | Description                      | Example                                             |
+| -------------------- | -------------------------------- | --------------------------------------------------- |
+| **API URL**          | AI service API endpoint          | `https://api.openai.com/v1/chat/completions`        |
+| **API Key**          | API key                          | `sk-xxxx...`                                        |
+| **Model**            | Model name                       | `gpt-5`, `deepseek-chat`                            |
+| **Translate Prompt** | Translation prompt template      | `Please translate the following text into Chinese:` |
+| **Explain Prompt**   | Explanation prompt template      | `Please explain the following text:`                |
+| **Full Text Limit**  | Maximum characters for full text | `100000`                                            |
 
 ### Common API Configuration Examples
 

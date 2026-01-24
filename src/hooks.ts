@@ -15,7 +15,7 @@ async function onStartup() {
   ChatManager.registerPrefs();
 
   ChatManager.registerChatSection();
-  
+
   ReaderManager.init();
 
   await Promise.all(
