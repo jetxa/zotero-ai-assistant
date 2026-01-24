@@ -1,5 +1,10 @@
-pref-title = 插件模板设置示例
+pref-title = AI 助手
 pref-enable =
     .label = 开启
-pref-input = 输入
+pref-apiUrl = API 地址
+pref-apiKey = API 密钥
+pref-model = 模型名称
+pref-prompt-translate = 翻译提示词
+pref-prompt-explain = 解读提示词
+pref-fullTextLimit = 全文读取限制 (字符数)
 pref-help = { $name } Build { $version } { $time }

@@ -1,24 +1,24 @@
 {
-  "name": "zotero-plugin-template",
+  "name": "zotero-ai-assistant",
   "type": "module",
-  "version": "3.1.0",
-  "description": "Zotero Plugin Template",
+  "version": "1.0.0",
+  "description": "AI Assistant for Zotero",
   "config": {
-    "addonName": "Zotero Plugin Template",
-    "addonID": "addontemplate@euclpts.com",
-    "addonRef": "addontemplate",
-    "addonInstance": "AddonTemplate",
-    "prefsPrefix": "extensions.zotero.addontemplate"
+    "addonName": "AI Assistant",
+    "addonID": "zotero-ai-assistant@jetxa.github.io",
+    "addonRef": "ai-assistant",
+    "addonInstance": "AIAssistant",
+    "prefsPrefix": "extensions.zotero.aiassistant"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/windingwind/zotero-plugin-template.git"
+    "url": "git+https://github.com/jetxa/zotero-ai-assistant.git"
   },
-  "author": "windingwind",
+  "author": "jetxa",
   "bugs": {
-    "url": "https://github.com/windingwind/zotero-plugin-template/issues"
+    "url": "https://github.com/jetxa/zotero-ai-assistant/issues"
   },
-  "homepage": "https://github.com/windingwind/zotero-plugin-template#readme",
+  "homepage": "https://github.com/jetxa/zotero-ai-assistant#readme",
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "start": "zotero-plugin serve",

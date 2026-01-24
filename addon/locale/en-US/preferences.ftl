@@ -1,5 +1,10 @@
-pref-title = Addon Template Example
+pref-title = AI Assistant
 pref-enable =
     .label = Enable
-pref-input = Input
+pref-apiUrl = API URL
+pref-apiKey = API Key
+pref-model = Model Name
+pref-prompt-translate = Translate Prompt
+pref-prompt-explain = Explain Prompt
+pref-fullTextLimit = Full Text Limit (Chars)
 pref-help = { $name } Build { $version } { $time }

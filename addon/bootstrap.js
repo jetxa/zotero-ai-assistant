@@ -16,6 +16,8 @@ async function startup({ id, version, resourceURI, rootURI }, reason) {
   var manifestURI = Services.io.newURI(rootURI + "manifest.json");
   chromeHandle = aomStartup.registerChrome(manifestURI, [
     ["content", "__addonRef__", rootURI + "content/"],
+    ["locale", "__addonRef__", "en-US", rootURI + "locale/en-US/"],
+    ["locale", "__addonRef__", "zh-CN", rootURI + "locale/zh-CN/"],
   ]);
 
   /**
