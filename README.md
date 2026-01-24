@@ -12,6 +12,10 @@ Zotero AI Assistant is an intelligent AI assistant plugin designed for [Zotero 7
 
 <img src="doc/image/overview.png" alt="Overview" width="900">
 
+## 📚 FAQ
+
+[Click here to view FAQ](doc/QA.md)
+
 ## ✨ Features
 
 ### 🤖 Intelligent Chat

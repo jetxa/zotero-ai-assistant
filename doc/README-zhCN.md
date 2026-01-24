@@ -12,6 +12,11 @@ Zotero AI Assistant 是一个为 [Zotero 7](https://www.zotero.org/) 设计的�
 
 <img src="image/overview_zhCN.png" alt="插件界面" width="900">
 
+
+## 📚 常见问题
+
+[点我查看常见问题](QA-zhCN.md)
+
 ## ✨ 功能特性
 
 ### 🤖 智能对话
