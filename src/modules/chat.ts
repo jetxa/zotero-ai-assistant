@@ -1,4 +1,5 @@
 import { getLocaleID, getString } from "../utils/locale";
+import { updateMarkdownContainer } from "../utils/markdown";
 import { getPref } from "../utils/prefs";
 
 // --- Interfaces ---
@@ -552,7 +553,7 @@ export class ChatManager {
               context,
               (currentText) => {
                 if (loadingBubble) {
-                  loadingBubble.textContent = currentText;
+                  updateMarkdownContainer(loadingBubble, currentText);
                   messagesContainer.scrollTop = messagesContainer.scrollHeight;
                 }
               },
@@ -672,8 +673,65 @@ function appendMessageUI(
   if (role === "user" && text.includes("\n\n(Context:")) {
     displayText = text.split("\n\n(Context:")[0];
   }
-  bubble.textContent = displayText;
-  bubble.style.whiteSpace = "pre-wrap";
+
+  if (role === "assistant") {
+    // Render markdown for assistant messages
+    updateMarkdownContainer(bubble, displayText);
+    // Add styles for markdown content
+    bubble.style.whiteSpace = "normal";
+    const style = doc.createElement("style");
+    style.textContent = `
+      .zotero-llm-chat-bubble h1, .zotero-llm-chat-bubble h2, .zotero-llm-chat-bubble h3,
+      .zotero-llm-chat-bubble h4, .zotero-llm-chat-bubble h5, .zotero-llm-chat-bubble h6 {
+        margin: 0.5em 0 0.3em 0;
+        line-height: 1.3;
+      }
+      .zotero-llm-chat-bubble h1 { font-size: 1.4em; }
+      .zotero-llm-chat-bubble h2 { font-size: 1.2em; }
+      .zotero-llm-chat-bubble h3 { font-size: 1.1em; }
+      .zotero-llm-chat-bubble p { margin: 0.4em 0; }
+      .zotero-llm-chat-bubble pre {
+        background: rgba(0,0,0,0.05);
+        padding: 8px;
+        border-radius: 4px;
+        overflow-x: auto;
+        margin: 0.5em 0;
+      }
+      .zotero-llm-chat-bubble code {
+        background: rgba(0,0,0,0.05);
+        padding: 1px 4px;
+        border-radius: 3px;
+        font-family: monospace;
+      }
+      .zotero-llm-chat-bubble pre code {
+        background: none;
+        padding: 0;
+      }
+      .zotero-llm-chat-bubble ul, .zotero-llm-chat-bubble ol {
+        margin: 0.5em 0;
+        padding-left: 1.5em;
+      }
+      .zotero-llm-chat-bubble a {
+        color: #007AFF;
+        text-decoration: underline;
+      }
+      .zotero-llm-chat-bubble hr {
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 0.5em 0;
+      }
+    `;
+    if (!doc.getElementById("zotero-llm-markdown-styles")) {
+      style.id = "zotero-llm-markdown-styles";
+      if (doc.head) {
+        doc.head.appendChild(style);
+      }
+    }
+    bubble.classList.add("zotero-llm-chat-bubble");
+  } else {
+    bubble.textContent = displayText;
+    bubble.style.whiteSpace = "pre-wrap";
+  }
 
   wrapper.appendChild(timestamp);
   wrapper.appendChild(bubble);
