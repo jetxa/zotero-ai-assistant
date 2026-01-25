@@ -403,27 +403,56 @@ export class ChatManager {
         };
 
         const getFullText = async (item: Zotero.Item): Promise<string> => {
-          let attachment: Zotero.Item | null = null;
+          // Collect all attachments to try
+          const attachmentsToTry: Zotero.Item[] = [];
+
           if (item.isRegularItem()) {
-            const best = await item.getBestAttachment();
-            if (best) attachment = best;
-          } else if (item.isAttachment()) {
-            attachment = item;
-          }
-          if (!attachment) return "";
-          try {
-            const cacheFile = Zotero.Fulltext.getItemCacheFile(attachment);
-            // nsIFile.exists() is a synchronous method, no await needed
-            if (cacheFile.exists()) {
-              const content = await Zotero.File.getContentsAsync(
-                cacheFile.path,
-              );
-              return (content as string) || "";
+            // Get all attachment IDs and try each one
+            const attachmentIDs = item.getAttachments();
+            for (const id of attachmentIDs) {
+              const att = Zotero.Items.get(id);
+              // Skip our own chat session attachments
+              if (att && !att.getField("title").startsWith("AI-Assistant-")) {
+                attachmentsToTry.push(att);
+              }
             }
-          } catch (e) {
-            Zotero.debug(`[AI Assistant] getFullText error: ${e}`);
+          } else if (item.isAttachment()) {
+            attachmentsToTry.push(item);
           }
-          return "";
+
+          // Collect full text from all attachments
+          const fullTexts: string[] = [];
+          for (const attachment of attachmentsToTry) {
+            try {
+              // Check if the attachment has been indexed
+              const indexedState =
+                await Zotero.Fulltext.getIndexedState(attachment);
+              // INDEX_STATE_INDEXED: 3
+              if (indexedState !== 3) {
+                // Not indexed, run indexing first
+                Zotero.debug(
+                  `[AI Assistant] Attachment ${attachment.id}, ${attachment.getField("title")}, not indexed, indexing now...`,
+                );
+                await Zotero.Fulltext.indexItems([attachment.id]);
+              }
+
+              const cacheFile = Zotero.Fulltext.getItemCacheFile(attachment);
+              // nsIFile.exists() is a synchronous method, no await needed
+              if (cacheFile.exists()) {
+                const content = await Zotero.File.getContentsAsync(
+                  cacheFile.path,
+                );
+                if (content) {
+                  fullTexts.push(content as string);
+                }
+              }
+            } catch (e) {
+              Zotero.debug(
+                `[AI Assistant] getFullText error for attachment ${attachment.id}: ${e}`,
+              );
+            }
+          }
+          return fullTexts.join("\n");
         };
 
         // --- Event Listeners ---
