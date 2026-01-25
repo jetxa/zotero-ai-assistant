@@ -424,6 +424,19 @@ export class ChatManager {
           const fullTexts: string[] = [];
           for (const attachment of attachmentsToTry) {
             try {
+              // Check if the attachment has been indexed
+              const indexedState = await Zotero.Fulltext.getIndexedState(
+                attachment,
+              );
+              // INDEX_STATE_INDEXED: 3
+              if (indexedState !== 3) {
+                // Not indexed, run indexing first
+                Zotero.debug(
+                  `[AI Assistant] Attachment ${attachment.id}, ${attachment.getField("title")}, not indexed, indexing now...`,
+                );
+                await Zotero.Fulltext.indexItems([attachment.id]);
+              }
+
               const cacheFile = Zotero.Fulltext.getItemCacheFile(attachment);
               // nsIFile.exists() is a synchronous method, no await needed
               if (cacheFile.exists()) {
