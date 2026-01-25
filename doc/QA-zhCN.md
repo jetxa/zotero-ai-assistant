@@ -24,7 +24,6 @@
 
 <img src="image/qa/single_file_error_fix.png" alt="error" width="600">
 
-
 ### 2. 选中"Full Text" 时没有生效
 
 检查一下当前的文献是否被索引，如果没有索引，Full Text获取不到全文内容，需要手动索引（目前已经在代码中执行了索引操作，如果索引失败，需要手动触发索引）

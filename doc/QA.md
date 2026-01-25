@@ -23,7 +23,6 @@
 
 <img src="image/qa/single_file_error_fix.png" alt="error" width="600">
 
-
 ### 2. "Full Text" option not working
 
 Check if the current literature has been indexed. If not indexed, the Full Text feature cannot retrieve the content and manual indexing is required (the plugin now attempts to index automatically, but if indexing fails, you need to trigger it manually).

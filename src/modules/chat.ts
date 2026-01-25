@@ -425,9 +425,8 @@ export class ChatManager {
           for (const attachment of attachmentsToTry) {
             try {
               // Check if the attachment has been indexed
-              const indexedState = await Zotero.Fulltext.getIndexedState(
-                attachment,
-              );
+              const indexedState =
+                await Zotero.Fulltext.getIndexedState(attachment);
               // INDEX_STATE_INDEXED: 3
               if (indexedState !== 3) {
                 // Not indexed, run indexing first
