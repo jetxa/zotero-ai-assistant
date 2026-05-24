@@ -111,10 +111,181 @@ export class ChatManager {
     | ((text: string, action: "translate" | "explain") => Promise<void>)
     | null = null;
 
+  static triggerClick(el: HTMLElement) {
+    if (!el) return;
+    
+    let current: any = el;
+    let depth = 0;
+    while (current && depth < 3) {
+      try {
+        Zotero.debug(`[AI Assistant] Triggering click on ${current.tagName} (id: ${current.id}, class: ${current.className})`);
+        
+        // 1. Dispatch MouseEvent (crucial for XUL elements in Zotero)
+        const doc = current.ownerDocument || Zotero.getMainWindow().document;
+        const evt = doc.createEvent("MouseEvents");
+        evt.initMouseEvent(
+          "click",
+          true, // bubbles
+          true, // cancelable
+          doc.defaultView || Zotero.getMainWindow(),
+          1, 0, 0, 0, 0,
+          false, false, false, false,
+          0,
+          null
+        );
+        current.dispatchEvent(evt);
+        
+        // 2. Call click() method if available
+        if (typeof current.click === 'function') {
+          current.click();
+        }
+      } catch (e) {
+        Zotero.debug("[AI Assistant] Click attempt failed: " + e);
+      }
+      current = current.parentElement;
+      depth++;
+    }
+  }
+
+  static openChatSidebar() {
+    try {
+      const win = Zotero.getMainWindow();
+      if (!win) return;
+
+      const docs: Document[] = [win.document];
+
+      if (typeof Zotero.Reader.getActiveReader === 'function') {
+        const activeReader = Zotero.Reader.getActiveReader();
+        if (activeReader) {
+          const iframeDoc = (activeReader as any)._iframeWindow?.document;
+          if (iframeDoc && !docs.includes(iframeDoc)) {
+            docs.push(iframeDoc);
+          }
+          const readerWinDoc = (activeReader as any).window?.document;
+          if (readerWinDoc && !docs.includes(readerWinDoc)) {
+            docs.push(readerWinDoc);
+          }
+        }
+      }
+
+      if (typeof Zotero.Reader.getInstances === 'function') {
+        const instances = Zotero.Reader.getInstances();
+        for (const r of instances) {
+          const iframeDoc = (r as any)._iframeWindow?.document;
+          if (iframeDoc && !docs.includes(iframeDoc)) {
+            docs.push(iframeDoc);
+          }
+          const readerWinDoc = (r as any).window?.document;
+          if (readerWinDoc && !docs.includes(readerWinDoc)) {
+            docs.push(readerWinDoc);
+          }
+        }
+      }
+
+      Zotero.debug(`[AI Assistant] Scanning ${docs.length} documents for chat sidebar/sidenav elements...`);
+
+      // 1. Expand any collapsed right pane splitters in all documents!
+      for (const doc of docs) {
+        try {
+          const splitters = doc.querySelectorAll('splitter, #zotero-context-splitter, #zotero-items-splitter, #zotero-right-splitter');
+          for (let i = 0; i < splitters.length; i++) {
+            const splitter = splitters[i];
+            if (splitter.getAttribute('state') === 'collapsed' || splitter.getAttribute('collapsed') === 'true') {
+              Zotero.debug('[AI Assistant] Expanding collapsed pane splitter: ' + splitter.id);
+              splitter.setAttribute('state', '');
+              splitter.removeAttribute('collapsed');
+            }
+          }
+        } catch (err) {
+          Zotero.debug('[AI Assistant] Error checking splitters: ' + err);
+        }
+      }
+
+      const selectors = [
+        '[data-pane-id="zotero-llm-chat"]',
+        '[pane-id="zotero-llm-chat"]',
+        '#zotero-llm-chat',
+        '.zotero-llm-chat',
+        '#zotero-item-pane-sidenav-zotero-llm-chat',
+      ];
+
+      for (const doc of docs) {
+        // 1. Try to find the section or sidenav button by direct selectors
+        for (const selector of selectors) {
+          const el = doc.querySelector(selector) as HTMLElement;
+          if (el) {
+            Zotero.debug(`[AI Assistant] Found element by selector ${selector} in document: ${el.tagName}`);
+            
+            // Expand details if it is collapsed
+            if (el.tagName.toLowerCase() === 'details' && !el.hasAttribute('open')) {
+              el.setAttribute('open', 'true');
+            }
+            
+            // Trigger robust click
+            this.triggerClick(el);
+            
+            // Also expand any collapsible section under/above it
+            const details = el.closest('details') || el.querySelector('details');
+            if (details && !details.hasAttribute('open')) {
+              details.setAttribute('open', 'true');
+            }
+            return;
+          }
+        }
+
+        // 2. Search for any elements with attributes containing "zotero-llm-chat" or our robot icon
+        const allElements = doc.querySelectorAll('*');
+        for (const el of allElements) {
+          const htmlEl = el as HTMLElement;
+          // Check attributes
+          const attributes = htmlEl.attributes;
+          if (attributes) {
+            for (let i = 0; i < attributes.length; i++) {
+              const attr = attributes[i];
+              if (attr.value && attr.value.includes('zotero-llm-chat')) {
+                Zotero.debug(`[AI Assistant] Found element by attribute ${attr.name}=${attr.value}: ${htmlEl.tagName}`);
+                this.triggerClick(htmlEl);
+                const details = htmlEl.closest('details') || htmlEl.querySelector('details');
+                if (details && !details.hasAttribute('open')) {
+                  details.setAttribute('open', 'true');
+                }
+                return;
+              }
+            }
+          }
+          // Check icon
+          if (htmlEl.tagName.toLowerCase() === 'image' || htmlEl.tagName.toLowerCase() === 'img') {
+            const src = htmlEl.getAttribute('src');
+            if (src && src.includes('robot.svg') && src.includes('ai-assistant')) {
+              Zotero.debug(`[AI Assistant] Found element by icon src ${src}: ${htmlEl.tagName}`);
+              this.triggerClick(htmlEl);
+              return;
+            }
+          }
+        }
+      }
+      Zotero.debug("[AI Assistant] Completed scan of all documents but could not find chat sidebar button.");
+    } catch (e) {
+      Zotero.debug("[AI Assistant] Error opening chat sidebar: " + e);
+    }
+  }
+
   static async handleExternalAction(
     text: string,
     action: "translate" | "explain",
   ) {
+    if (!this.onAction) {
+      Zotero.debug("[AI Assistant] Sidebar not open, attempting to open it programmatically...");
+      this.openChatSidebar();
+      
+      // Wait for the sidebar to render and onAction to be registered (up to 2 seconds)
+      let attempts = 0;
+      while (!this.onAction && attempts < 20) {
+        await new Promise((resolve) => setTimeout(resolve, 100));
+        attempts++;
+      }
+    }
+
     if (this.onAction) {
       await this.onAction(text, action);
     } else {

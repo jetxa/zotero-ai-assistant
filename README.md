@@ -1,12 +1,12 @@
 # Zotero AI Assistant
 
-[![zotero target version](https://img.shields.io/badge/Zotero-7-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
+[![zotero target version](https://img.shields.io/badge/Zotero-7%20%7C%208%20%7C%209-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 **English** | [简体中文](doc/README-zhCN.md)
 
-Zotero AI Assistant is an intelligent AI assistant plugin designed for [Zotero 7](https://www.zotero.org/), helping you read and understand academic literature more efficiently.
+Zotero AI Assistant is an intelligent AI assistant plugin designed for [Zotero 7 / 8 / 9](https://www.zotero.org/), helping you read and understand academic literature more efficiently.
 
 **The plugin requires the use of an API to interact with the AI model. You need to get an API key from a LLM provider like OpenAI, Grok, DeepSeek, etc.**
 

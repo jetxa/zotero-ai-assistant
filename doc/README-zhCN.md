@@ -1,12 +1,12 @@
 # Zotero AI Assistant
 
-[![zotero target version](https://img.shields.io/badge/Zotero-7-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
+[![zotero target version](https://img.shields.io/badge/Zotero-7%20%7C%208%20%7C%209-green?style=flat-square&logo=zotero&logoColor=CC2936)](https://www.zotero.org)
 [![Using Zotero Plugin Template](https://img.shields.io/badge/Using-Zotero%20Plugin%20Template-blue?style=flat-square&logo=github)](https://github.com/windingwind/zotero-plugin-template)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
 [English](../README.md) | **简体中文**
 
-Zotero AI Assistant 是一个为 [Zotero 7](https://www.zotero.org/) 设计的智能 AI 助手插件，可以帮助您更高效地阅读和理解学术文献。
+Zotero AI Assistant 是一个为 [Zotero 7 / 8 / 9](https://www.zotero.org/) 设计的智能 AI 助手插件，可以帮助您更高效地阅读和理解学术文献。
 
 **插件需要使用大模型API，通过API与大模型进行交互，[点我了解如何获取API](API.md)**
 
